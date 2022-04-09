@@ -107,7 +107,33 @@ const questions = [
                 return false;
             }
         } 
-    }
+    },
+    {
+        type: 'input',
+        name: 'username',
+        message: 'Please enter your GitHub username (Required)',
+        validate: username => {
+            if (username) {
+                return true;
+            } else {
+                console.log('Please enter your GitHub username!');
+                return false;
+            }
+        } 
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Please enter your email address (Required)',
+        validate: email => {
+            if (email) {
+                return true;
+            } else {
+                console.log('Please enter your email address!');
+                return false;
+            }
+        } 
+    },
 ];
 
 // TODO: Create a function to write README file
