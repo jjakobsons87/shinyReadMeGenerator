@@ -75,6 +75,39 @@ const questions = [
             }
         } 
     },
+    {
+        type:'confirm',
+        name: 'confirmCredits',
+        message: 'Would you like to list any collaborators, third-party assets, or tutorials?',
+        default: true
+    },
+    {
+        type: 'input',
+        name: 'credits',
+        message: 'Please enter any collaborators, third-party assets, or tutorials',
+        when: ({ credits })  => {
+            if (credits) {
+                return true;
+            } else {
+                return false;
+            }
+        } 
+    },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'Please choose a license. (Required',
+        choices: ["MIT License", "GPL v3", "The Unlicense", "No License"],
+        
+        validate: licenseInput => {
+            if (licenseInput) {
+                return true;
+            } else {
+                console.log('Please choose a license!');
+                return false;
+            }
+        } 
+    }
 ];
 
 // TODO: Create a function to write README file
