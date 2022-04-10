@@ -1,11 +1,10 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateFile = require('./utils/generateMarkdown.js');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 
 // TODO: Create an array of questions for user input
-const questions = () => {
-    return inquirer.prompt([
+const questions = [
     {
         type: 'input',
         name: 'title',
@@ -23,30 +22,11 @@ const questions = () => {
         type: 'input',
         name: 'description',
         message: 'Please describe the functionality of the repo (Required)',
-        validate: repoDesc => {
-            if (repoDesc) {
+        validate: description => {
+            if (description) {
                 return true;
             } else {
                 console.log('Please enter a description of your repo!');
-                return false;
-            }
-        } 
-    },
-    {
-        type: 'confirm',
-        name: 'confirmToc',
-        message: 'Would you like to add a Table of Content to your README?',
-        default: false
-    },
-    {
-        // WORK ON THIS - THIS NEEDS MORE INFO ADDED TO CREATE IT 
-        type: 'input',
-        name: 'TOC Contents',
-        message: 'Please enter your your TOC',
-        when: ({ confirmToc }) => {
-            if (confirmToc) {
-                return true;
-            } else {
                 return false;
             }
         } 
@@ -67,7 +47,7 @@ const questions = () => {
     {
         type: 'input',
         name: 'usage',
-        message: 'Please provide instructions and examples for use',
+        message: 'Please provide instructions and examples for use.',
         validate: usage => {
             if (usage) {
                 return true;
@@ -86,7 +66,7 @@ const questions = () => {
     {
         type: 'input',
         name: 'credits',
-        message: 'Please enter any collaborators, third-party assets, or tutorials',
+        message: 'Please enter any collaborators, third-party assets, or tutorials!',
         when: ({ credits })  => {
             if (credits) {
                 return true;
@@ -98,8 +78,8 @@ const questions = () => {
     {
         type: 'list',
         name: 'license',
-        message: 'Please choose a license. (Required',
-        choices: ["MIT License", "GPL v3", "The Unlicense", "No License"],
+        message: 'What license would you like to apply (Required)?',
+        choices: ["MIT License", "GPL 3.0", "BSD 3", "Apache 2.0", "No License"],
         
         validate: licenseInput => {
             if (licenseInput) {
@@ -113,7 +93,7 @@ const questions = () => {
     {
         type: 'input',
         name: 'username',
-        message: 'Please enter your GitHub username (Required)',
+        message: 'What is your GitHub username (Required)?',
         validate: username => {
             if (username) {
                 return true;
@@ -135,17 +115,30 @@ const questions = () => {
                 return false;
             }
         } 
-    },
-    ]);
-};
+    }
+];
 
 // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {}
 
 // // TODO: Create a function to initialize app
-// function init() {}
+const init = () => {
+    return inquirer.prompt(questions).then((readmeData) => {
+        return readmeData;
+    });
+} ;
 
 // // Function call to initialize app
-// init();
-
-questions(); 
+init()
+    .then((readmeData) => {
+        return generateMarkdown(readmeData);
+    })
+    .then((pageMD) => {
+        return fs.writeFile(pageMD);
+    })
+    .then((writeFileResponse) => {
+        console.log(writeFileResponse.message);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
