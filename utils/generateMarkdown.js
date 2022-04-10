@@ -14,8 +14,8 @@ function generateMarkdown(data) {
   ## Table-Of-Contents 
 
   * [Description](#description)
-  * [Usage](#usage)
   * [Installation](#installation)
+  * [Usage](#usage)
   * [Testing](#testing)
   * [License](#license)
   * [Contributing](#contributing)
@@ -25,13 +25,13 @@ function generateMarkdown(data) {
 
   ${data.description}
 
-  ## Usage
-
-  ${data.usage}
-
   ## Installation
 
   ${data.install}
+
+  ## Usage
+
+  ${data.usage}
 
   ## Testing 
 
