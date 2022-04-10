@@ -79,7 +79,7 @@ const questions = [
         type: 'list',
         name: 'license',
         message: 'What license would you like to apply (Required)?',
-        choices: ["MIT", "GPL-3.0", "BSD-3", "Apache-2.0", "No License"],
+        choices: ["MIT", "GPL-3.0", "BSD-3", "Apache-2.0", "No-License"],
         
         validate: licenseInput => {
             if (licenseInput) {
@@ -119,26 +119,24 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+const writeFile = (fileName, data) => {
+    fs.writeFile(fileName, (data), (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("README has been created successfully!")
+        }
+    })
+};
 
 // // TODO: Create a function to initialize app
 const init = () => {
-    return inquirer.prompt(questions).then((readmeData) => {
-        return readmeData;
+    inquirer.prompt(questions).then((readmeData) => {
+        console.log(generateMarkdown(readmeData));
+        writeFile("./dist/generated-README.md", generateMarkdown(readmeData));
     });
-} ;
+};
 
 // // Function call to initialize app
 init()
-    .then((readmeData) => {
-        return generateMarkdown(readmeData);
-    })
-    .then((pageMD) => {
-        return fs.writeFile(pageMD);
-    })
-    .then((writeFileResponse) => {
-        console.log(writeFileResponse.message);
-    })
-    .catch((err) => {
-        console.log(err);
-    })
+
