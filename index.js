@@ -91,6 +91,24 @@ const questions = [
         } 
     },
     {
+        type:'confirm',
+        name: 'confirmTesting',
+        message: 'Would you like to list any testing instructions?',
+        default: false
+    },
+    {
+        type: 'input',
+        name: 'test',
+        message: 'Please enter any your testing information:',
+        when: ({ test })  => {
+            if (test) {
+                return true;
+            } else {
+                return false;
+            }
+        } 
+    },
+    {
         type: 'input',
         name: 'username',
         message: 'What is your GitHub username (Required)?',

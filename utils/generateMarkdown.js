@@ -16,6 +16,7 @@ function generateMarkdown(data) {
   * [Description](#description)
   * [Usage](#usage)
   * [Installation](#installation)
+  * [Testing](#testing)
   * [License](#license)
   * [Contributing](#contributing)
   * [Questions](#questions)
@@ -32,9 +33,16 @@ function generateMarkdown(data) {
 
   ${data.install}
 
+  ## Testing 
+
+  ${data.test}
+
   ## License
 
-  
+  This project is covered under the following license: 
+  ${data.license}
+
+  For License information, please visit: 
 
   ## Contributing 
 
@@ -42,8 +50,8 @@ function generateMarkdown(data) {
 
   ## Questions 
 
-  Any questions? Reach out to me via GitHub or Email! 
-  [Github](https://github.com/${data.username}) 
+  Any questions? Reach out to me via GitHub or Email! </br>
+  [Github](https://github.com/${data.username}) </br>
   [Email](mailto:${data.email})
   `;
 };
