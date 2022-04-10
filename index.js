@@ -79,7 +79,7 @@ const questions = [
         type: 'list',
         name: 'license',
         message: 'What license would you like to apply (Required)?',
-        choices: ["MIT License", "GPL 3.0", "BSD 3", "Apache 2.0", "No License"],
+        choices: ["MIT", "GPL-3.0", "BSD-3", "Apache-2.0", "No License"],
         
         validate: licenseInput => {
             if (licenseInput) {
