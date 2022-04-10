@@ -67,8 +67,8 @@ const questions = [
         type: 'input',
         name: 'credits',
         message: 'Please enter any collaborators, third-party assets, or tutorials!',
-        when: ({ credits })  => {
-            if (credits) {
+        when: ({ confirmCredits })  => {
+            if (confirmCredits) {
                 return true;
             } else {
                 return false;
@@ -79,7 +79,7 @@ const questions = [
         type: 'list',
         name: 'license',
         message: 'What license would you like to apply (Required)?',
-        choices: ["MIT", "GPL-3.0", "BSD-3", "Apache-2.0", "No-License"],
+        choices: [{name:'MIT License', value: 'MIT'}, {name: 'GPL 3.0', value: 'GPL3.0'}, {name: 'BSD 3', value: 'BSD3'}, {name: 'Apache 2.0', value: 'Apache2.0'}, {name: 'No License', value: ''}],
         
         validate: licenseInput => {
             if (licenseInput) {
@@ -100,8 +100,8 @@ const questions = [
         type: 'input',
         name: 'test',
         message: 'Please enter any your testing information:',
-        when: ({ test })  => {
-            if (test) {
+        when: ({ confirmTesting })  => {
+            if (confirmTesting) {
                 return true;
             } else {
                 return false;
@@ -142,7 +142,7 @@ const writeFile = (fileName, data) => {
         if (err) {
             console.log(err);
         } else {
-            console.log("README has been created successfully!")
+            console.log("README has been created successfully! Navigate to the 'dist' folder for the generated README!")
         }
     })
 };

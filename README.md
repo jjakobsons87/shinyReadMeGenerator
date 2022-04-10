@@ -45,3 +45,7 @@
   [Github](https://github.com/jjakobsons87) </br>
   [Email](mailto:jjakobsons87@gmail.com)
   
+  ## Screenshot and Video Recording 
+  Link to video recording: https://drive.google.com/file/d/1enBd8vYhIdJ2oy2e5n83POoxEllzbodN/view 
+
+  ![App Screenshot](./readmeSC.png)
